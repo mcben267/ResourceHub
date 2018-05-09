@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "199127675496",
+    "firebase_url": "https://resourcehub-b4a41.firebaseio.com",
+    "project_id": "resourcehub-b4a41",
+    "storage_bucket": "resourcehub-b4a41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199127675496:android:d2de2f9e6440d5e2",
+        "android_client_info": {
+          "package_name": "com.resourcehub.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199127675496-atldb8jjuarfo0ctr9d8lbcrde0vv2nf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIA7fV-2NcUowvdOdnze_uNR8K_jS9EBM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
