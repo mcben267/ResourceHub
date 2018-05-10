@@ -12,7 +12,9 @@
     <color name="colorDeeppurple">#7c4dff</color>
     <color name="colorYellow">#00bfa5</color>
     <color name="colorGray">#B8B8B8</color>
+    <color name="colorGreenish">#ccff66</color>
     <color name="colorLime">#00ff55</color>
     <color name="colorGreen">#4dc3ff</color>
+    <color name="colorOrange">#f6831b</color>
 
 </resources>

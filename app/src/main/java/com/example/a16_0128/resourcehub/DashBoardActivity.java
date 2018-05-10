@@ -1,6 +1,7 @@
 package com.example.a16_0128.resourcehub;
 
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,6 +22,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
+
+        //
+       // NavigationView navigationView = (NavigationView) findViewById(R.id.navi);
 
         //defining Card view Buttons
         coursecontent =(CardView) findViewById(R.id.btncoursecontent);
@@ -63,10 +67,10 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
         switch(view.getId()){
             case R.id.btncoursecontent:
-               //i= new Intent(this,course_content.class);
+                //i= new Intent(this,course_content.class);
                 Toast.makeText(DashBoardActivity.this,"Clicked Course Content",Toast.LENGTH_SHORT).show();
                 //startActivity(i);
-               break;
+                break;
             case R.id.btnoverview:
                 //i= new Intent(this,course_content.class);
                 Toast.makeText(DashBoardActivity.this,"Clicked Overview",Toast.LENGTH_SHORT).show();
@@ -91,8 +95,15 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                 i= new Intent(this,CalendarActivity.class);
                 Toast.makeText(DashBoardActivity.this,"Clicked Events",Toast.LENGTH_SHORT).show();
                 startActivity(i);break;
+            case  R.id.btnmyaccount:
+                //i= new Intent(this,CalendarActivity.class);
+                Toast.makeText(DashBoardActivity.this,"Clicked Account",Toast.LENGTH_SHORT).show();
+              //    startActivity(i);break;
+
             default:break;
         }
 
     }
+
+
 }

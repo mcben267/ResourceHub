@@ -9,8 +9,6 @@
     android:id="@+id/drawerId"
     tools:context="com.example.a16_0128.resourcehub.DashBoardActivity">
 
-
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,12 +18,59 @@
     android:orientation="vertical"
     tools:context="com.example.a16_0128.resourcehub.DashBoardActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Major:"
-        android:textSize="22sp"
-        android:layout_marginLeft="10dp"/>
+    <RelativeLayout
+        android:layout_width="395dp"
+        android:layout_height="100dp"
+        android:layout_margin="5dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/unitView"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/unitView"
+            android:layout_marginTop="17dp"
+            android:text="Major:"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/unitView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:text="Unit:"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/unitSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/unitView"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/textView2"
+            android:layout_toRightOf="@+id/textView2"
+            android:text="NothingSelected"
+            android:textStyle="bold"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/unitView"
+            android:layout_alignLeft="@+id/unitSelected"
+            android:layout_alignStart="@+id/unitSelected"
+            android:text="NothingSelected"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,16 +82,16 @@
                 android:id="@+id/btnoverview"
                 android:layout_width="160dp"
                 android:layout_height="140dp"
-                android:layout_margin="10dp">
+                android:layout_margin="5dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center">
                     <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:background="@drawable/greencircle"
+                        android:layout_width="74dp"
+                        android:layout_height="74dp"
+                        android:background="@drawable/dbpurplecircle"
                         android:src="@drawable/ic_content_paste_black_24dp"
                         android:padding="10dp"/>
                     <TextView
@@ -61,12 +106,7 @@
                         android:background="@color/colorGrayLine"
 
                         android:layout_marginTop="5dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="manager you activities"
-                        android:padding="5dp"/>
+
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -81,9 +121,9 @@
                     android:orientation="vertical"
                     android:gravity="center">
                     <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:background="@drawable/greencircle"
+                        android:layout_width="74dp"
+                        android:layout_height="74dp"
+                        android:background="@drawable/dbyellowcircle"
                         android:src="@drawable/ic_assignment_black_24dp"
                         android:padding="10dp"/>
                     <TextView
@@ -98,12 +138,7 @@
                         android:background="@color/colorGrayLine"
 
                         android:layout_marginTop="5dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="manager you activities"
-                        android:padding="5dp"/>
+
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>
@@ -116,16 +151,16 @@
                 android:id="@+id/btnpastpapers"
                 android:layout_width="160dp"
                 android:layout_height="140dp"
-                android:layout_margin="10dp">
+                android:layout_margin="5dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center">
                     <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:background="@drawable/greencircle"
+                        android:layout_width="74dp"
+                        android:layout_height="74dp"
+                        android:background="@drawable/dbgreencircle"
                         android:src="@drawable/ic_chrome_reader_mode_black_24dp"
                         android:padding="10dp"/>
                     <TextView
@@ -140,12 +175,7 @@
                         android:background="@color/colorGrayLine"
 
                         android:layout_marginTop="5dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="manager you activities"
-                        android:padding="5dp"/>
+
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -160,9 +190,9 @@
                     android:orientation="vertical"
                     android:gravity="center">
                     <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:background="@drawable/greencircle"
+                        android:layout_width="74dp"
+                        android:layout_height="74dp"
+                        android:background="@drawable/db_orangecircle"
                         android:src="@drawable/ic_receipt_black_24dp"
                         android:padding="10dp"/>
                     <TextView
@@ -177,12 +207,6 @@
                         android:background="@color/colorGrayLine"
 
                         android:layout_marginTop="5dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="manager you activities"
-                        android:padding="5dp"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -197,16 +221,16 @@
             android:id="@+id/btnForum"
             android:layout_width="160dp"
             android:layout_height="140dp"
-            android:layout_margin="10dp">
+            android:layout_margin="5dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:background="@drawable/greencircle"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:background="@drawable/db_pinkcircle"
                     android:src="@drawable/ic_chat_black_24dp"
                     android:padding="10dp"/>
                 <TextView
@@ -221,12 +245,6 @@
                     android:background="@color/colorGrayLine"
 
                     android:layout_marginTop="5dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="manager you activities"
-                    android:padding="5dp"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -241,9 +259,9 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:background="@drawable/greencircle"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:background="@drawable/db_graycircle"
                     android:src="@drawable/ic_event_black_24dp"
                     android:padding="10dp"/>
                 <TextView
@@ -258,12 +276,6 @@
                     android:background="@color/colorGrayLine"
 
                     android:layout_marginTop="5dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="manager you activities"
-                    android:padding="5dp"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -275,8 +287,9 @@
 
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/menu"
-        android:layout_gravity="start">
+        app:menu="@menu/navigation_menu"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/menuheader">
 
     </android.support.design.widget.NavigationView>
     </android.support.v4.widget.DrawerLayout>
