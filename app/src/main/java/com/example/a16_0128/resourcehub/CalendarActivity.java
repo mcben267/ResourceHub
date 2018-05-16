@@ -20,6 +20,7 @@ public class CalendarActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         sycnCalendar = findViewById(R.id.btnSync);

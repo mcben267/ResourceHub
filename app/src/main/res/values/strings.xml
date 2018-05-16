@@ -2,6 +2,7 @@
     <string name="app_name">Resource Hub</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_dash_board">Dash Board</string>
+    <string name="title_activity_aboutpage">About</string>
     <string name="title_activity_chatroom">Resource Hub Forum</string>
     <string name="open">open</string>
     <string name="close">close</string>
@@ -25,4 +26,16 @@
     <string name="chat_room">Chat Room</string>
     <string name="send">SEND</string>
     <string name="enter_message">hint</string>
+    <string name="title_activity_navigation">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="Major">
+        <item>Select Major...</item>
+        <item>Accounting</item>
+        <item>Communication</item>
+        <item>Computer</item>
+
+    </string-array>
 </resources>

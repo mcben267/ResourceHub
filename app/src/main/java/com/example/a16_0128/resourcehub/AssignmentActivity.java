@@ -35,6 +35,7 @@ public class AssignmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //declaration
         Button btnUpload = (Button) findViewById(R.id.btnUpload);

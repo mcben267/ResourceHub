@@ -18,6 +18,7 @@ public class ForumActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
        // mMessageRecycler = (RecyclerView) findViewById(R.id.reyclerview_message_list);
