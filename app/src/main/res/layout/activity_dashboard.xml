@@ -10,7 +10,8 @@
     <RelativeLayout
         android:layout_width="395dp"
         android:layout_height="120dp"
-        android:layout_margin="5dp">
+        android:layout_margin="10dp"
+        android:background="@color/colorLightGray">
 
         <TextView
             android:id="@+id/textView2"
@@ -200,7 +201,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="5dp"
-                    android:text="Forum"/>
+                    android:text="Chat"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
