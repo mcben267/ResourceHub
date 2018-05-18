@@ -113,7 +113,7 @@ public class PastpapersActivity extends AppCompatActivity {
     Our HTTP Client
      */
         public class JSONDownloader {
-            private static final String PDF_SITE_URL="https://192.168.10.222/resourcehub/viewpdf.php";
+            private static final String PDF_SITE_URL="https://mcben267.000webhostapp/mcbenapp/viewpdf.php";
             private final Context c;
             private GridViewAdapter adapter ;
 
