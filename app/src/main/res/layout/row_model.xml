@@ -7,7 +7,7 @@
     android:layout_margin="5dp"
     card_view:cardCornerRadius="5dp"
     card_view:cardElevation="10dp"
-    android:layout_height="300dp">
+    android:layout_height="250dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,8 +15,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:padding="10dp"
+            android:layout_height="90dp"
             android:src="@drawable/pdficon"/>
         <TextView
             android:layout_width="wrap_content"

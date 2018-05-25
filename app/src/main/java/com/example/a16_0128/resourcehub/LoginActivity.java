@@ -1,19 +1,17 @@
 package com.example.a16_0128.resourcehub;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -21,27 +19,23 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity{
-
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
+public class LoginActivity extends AppCompatActivity {
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -50,11 +44,26 @@ public class LoginActivity extends AppCompatActivity{
     private View mLoginFormView;
     private CheckBox rememberMe;
 
+    //firebase
+    private FirebaseAuth mAuth;
+
+    //http
+    JSONObject json_data;
+    HttpURLConnection con;
+    String query,results;
+    ProgressDialog mProgressDialog;
+
+    //data placeholder
+    String NAME=null,PASSWORD=null,EMAIL=null,MAJOR=null;
+    Context ctx=this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //
+        mAuth = FirebaseAuth.getInstance();
 
         //Check
         rememberMe = (CheckBox) findViewById(R.id.btnRemeber);
@@ -85,8 +94,10 @@ public class LoginActivity extends AppCompatActivity{
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
+
+               // attemptLogin();
                 opennext();
+
             }
         });
 
@@ -100,8 +111,18 @@ public class LoginActivity extends AppCompatActivity{
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+
+
     }
 
+    //firebase
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -109,9 +130,6 @@ public class LoginActivity extends AppCompatActivity{
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
 
         // Reset errors.
         mEmailView.setError(null);
@@ -147,15 +165,11 @@ public class LoginActivity extends AppCompatActivity{
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-            opennext();
-
-
+            Login_task obj = new Login_task();
+            obj.execute(email , password);
         }
+
+
     }
 
     private boolean isEmailValid(String email) {
@@ -168,135 +182,107 @@ public class LoginActivity extends AppCompatActivity{
         return password.length() > 4;
     }
 
-    void  opennext(){
-        Intent intent = new Intent(LoginActivity.this,NavigationActivity.class);
+    void opennext() {
+        Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
         startActivity(intent);
         saveUser();
     }
 
-    void openReg(){
-                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
-                startActivity(intent);
+    void openReg() {
+        Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+        startActivity(intent);
     }
-    void saveUser(){
+
+    void saveUser() {
         //remember me function
-        if (rememberMe.isChecked()){
+        if (rememberMe.isChecked()) {
 
             String email = mEmailView.getText().toString();
             String password = mPasswordView.getText().toString();
 
-          if  (isEmailValid(email)){}
+            if (isEmailValid(email)) {
+            }
 
             SharedPreferences sharedPref = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString("Email",mEmailView.getText().toString());
-            editor.putString("Password",mPasswordView.getText().toString());
+            editor.putString("Email", mEmailView.getText().toString());
+            editor.putString("Password", mPasswordView.getText().toString());
             editor.apply();
         }
     }
-    void rememberUser(){
+
+    void rememberUser() {
 
         SharedPreferences sharedPref = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
-        String name = sharedPref.getString("Username","");
-        String pw = sharedPref.getString("Username","");
+        String name = sharedPref.getString("Username", "");
+        String pw = sharedPref.getString("Username", "");
 
         mEmailView.setText(name);
         mPasswordView.setText(pw);
 
     }
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
+    final class Login_task extends AsyncTask<String,String, String> {
 
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
-    }
-
-
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+        protected String doInBackground(String... params) {
+            String name = params[0];
+            String password = params[1];
+            String data="";
+            int tmp;
 
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+                URL url = new URL("https://mcben267.000webhostapp.com/mcbenapp/userlogin.php");
+                String urlParams = "name="+name+"&password="+password;
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setDoOutput(true);
+                OutputStream os = httpURLConnection.getOutputStream();
+                os.write(urlParams.getBytes());
+                os.flush();
+                os.close();
+
+                InputStream is = httpURLConnection.getInputStream();
+                while((tmp=is.read())!=-1){
+                    data+= (char)tmp;
                 }
-            }
 
-            // TODO: register the new account here.
-            return true;
-        }
+                is.close();
+                httpURLConnection.disconnect();
 
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                return data;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return "Exception: "+e.getMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Exception: "+e.getMessage();
             }
         }
 
         @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
+        protected void onPostExecute(String s) {
+            String err=null;
+            try {
+                JSONObject root = new JSONObject(s);
+                JSONObject user_data = root.getJSONObject("user_data");
+                NAME = user_data.getString("name");
+                PASSWORD = user_data.getString("password");
+                EMAIL = user_data.getString("email");
+                MAJOR = user_data.getString("major");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                err = "Exception: "+e.getMessage();
+            }
+
+            Intent i = new Intent( LoginActivity.this, DashboardActivity.class);
+            i.putExtra("name", NAME);
+           // i.putExtra("password", PASSWORD);
+           // i.putExtra("email", EMAIL);
+           // i.putExtra("major",MAJOR);
+            startActivity(i);
         }
     }
 }
-

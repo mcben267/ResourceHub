@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -40,8 +39,8 @@ public class PDFActivity extends AppCompatActivity implements OnLoadCompleteList
 
 
         FileLoader.with(this)
-                .load(path,false) //2nd parameter is optioal, pass true to force load from network
-                .fromDirectory("My_PDFs", FileLoader.DIR_INTERNAL)
+                .load(path,true) //2nd parameter is optioal, pass true to force load from network
+               .fromDirectory("My_PDFs", FileLoader.DIR_INTERNAL)
                 .asFile(new FileRequestListener<File>() {
                     @Override
                     public void onLoad(FileLoadRequest request, FileResponse<File> response) {

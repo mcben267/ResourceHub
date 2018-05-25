@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.a16_0128.resourcehub" >
+    package="com.example.a16_0128.resourcehub">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -17,8 +17,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,6 +33,7 @@
             android:parentActivityName=".DashboardActivity" />
         <activity
             android:name=".CalendarActivity"
+            android:label="@string/title_activity_calendar"
             android:parentActivityName=".DashboardActivity" />
         <activity
             android:name=".ForumActivity"
@@ -40,24 +41,29 @@
             android:parentActivityName=".DashboardActivity" />
         <activity
             android:name=".AssignmentActivity"
+            android:label="@string/title_activity_assignment"
             android:parentActivityName=".DashboardActivity" />
         <activity
             android:name=".DashboardActivity"
-            android:label="@string/title_activity_dash_board"
-            android:parentActivityName=".NavigationActivity" />
-        <activity
-            android:name=".NavigationActivity"
-            android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_dash_board" />
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_aboutpage"
-            android:parentActivityName=".NavigationActivity" />
+            android:parentActivityName=".DashboardActivity" />
         <activity
             android:name=".PastpapersActivity"
+            android:label="@string/title_activity_past_papers"
+            android:parentActivityName=".DashboardActivity" />
+        <activity
+            android:name=".PDFActivity"
+            android:parentActivityName=".PastpapersActivity" />
+        <activity
+            android:name=".OverviewActivity"
+            android:parentActivityName=".DashboardActivity" />
+        <activity
+            android:name=".UserAccountActivity"
+            android:label="@string/title_activity_useraccount"
             android:parentActivityName=".DashboardActivity"/>
-        <activity android:name=".PDFActivity" >
-        </activity>
     </application>
 
 </manifest>

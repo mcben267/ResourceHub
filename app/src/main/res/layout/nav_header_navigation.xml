@@ -22,18 +22,19 @@
         android:id="@+id/txtUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:text="John Don"
-        android:textSize="20sp"
         android:layout_marginTop="5dp"
-        android:textStyle="bold"/>
+        android:text="John Don"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/txtEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
         android:text="john.don@gmail.com"
+        android:textColor="@color/colorWhite"
         android:textSize="16dp"
-        android:textStyle="italic"/>
+        android:textStyle="italic" />
 
 </LinearLayout>

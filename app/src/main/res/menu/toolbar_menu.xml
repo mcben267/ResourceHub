@@ -6,9 +6,5 @@
         android:id="@+id/btnSettings"
         android:title="Settings"
         app:showAsAction="never"/>
-    <item
-        android:id="@+id/btnAbout"
-        android:title="About"
-        app:showAsAction="never"/>
 
 </menu>

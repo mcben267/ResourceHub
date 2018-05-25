@@ -31,12 +31,14 @@ public class PastpapersActivity extends AppCompatActivity {
 
     public class PDFDoc {
         int id;
-        String name,category,pdfURL,pdfIconURL;
+        String name,author,category,pdfURL,pdfIconURL;
         public int getId() {return id;}
         public void setId(int id) {this.id = id;}
+
         public String getName() {return name;}
         public void setName(String name) {this.name = name;}
         public String getAuthor() {return category;}
+        public void setAuthor(String author){this.author= author;}
         public void setCategory(String category) {this.category = category;}
         public String getPdfURL() {return pdfURL;}
         public void setPdfURL(String pdfURL) {this.pdfURL = pdfURL;}
@@ -53,9 +55,6 @@ public class PastpapersActivity extends AppCompatActivity {
             this.c = c;
             this.pdfDocuments = pdfDocuments;
         }
-
-
-
 
         @Override
         public int getCount() {return pdfDocuments.size();}
@@ -103,17 +102,11 @@ public class PastpapersActivity extends AppCompatActivity {
         }
     }
 
-  /*  @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pastpapers);
-    }*/
-
   /*
     Our HTTP Client
      */
         public class JSONDownloader {
-            private static final String PDF_SITE_URL="https://mcben267.000webhostapp/mcbenapp/viewpdf.php";
+            private static final String PDF_SITE_URL="https://mcben267.000webhostapp.com/mcbenapp/viewpdf.php";
             private final Context c;
             private GridViewAdapter adapter ;
 
@@ -160,7 +153,7 @@ public class PastpapersActivity extends AppCompatActivity {
                                         p.setName(name);
                                         p.setCategory(category);
                                         p.setCategory(description);
-                                        p.setPdfURL(PDF_SITE_URL+pdfURL);
+                                        p.setPdfURL(pdfURL);
                                         p.setPdfIconURL(PDF_SITE_URL+pdfIconURL);
 
                                         pdfDocuments.add(p);
